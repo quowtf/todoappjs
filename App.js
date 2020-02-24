@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Button } from "react-native";
 
 class App extends React.Component {
   render() {
@@ -13,6 +13,7 @@ class App extends React.Component {
             borderWidth: 1
           }}
         />
+        <Button title="Add Todo" color="grey" />
       </View>
     );
   }
