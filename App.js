@@ -7,15 +7,15 @@ class App extends React.Component {
     todos: []
   };
   deleteTodo = t => {
-    arr = this.state.todos;
-    index = arr.indexOf(t);
-    arr.splice(index, 1);
-    this.setState({ todos: arr });
+    todos = this.state.todos;
+    index = todos.indexOf(t);
+    todos.splice(index, 1);
+    this.setState({ todos });
   };
   addTodo = () => {
-    arr = this.state.todos;
-    arr.push(this.state.text);
-    this.setState({ todos: arr, text: "" });
+    todos = this.state.todos;
+    todos.push(this.state.text);
+    this.setState({ todos, text: "" });
   };
   renderTodos = () => {
     return this.state.todos.map(todo => {
@@ -34,7 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.viewStyles}>
-        <Text>Hola React Native</Text>
+        <Text style={styles.header}>Todo App</Text>
         <TextInput
           style={styles.inputStyles}
           onChangeText={text => this.setState({ text })}
@@ -49,14 +49,20 @@ class App extends React.Component {
 
 const styles = {
   viewStyles: {
-    flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    margin: 10,
+    marginTop: 50
   },
   inputStyles: {
     height: 40,
     borderColor: "grey",
     borderWidth: 1
+  },
+  header: {
+    fontSize: 30,
+    color: "grey",
+    fontWeight: "bold"
   }
 };
 
