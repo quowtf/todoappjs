@@ -4,16 +4,31 @@ import { View, Text, TextInput, Button } from "react-native";
 class App extends React.Component {
   state = {
     text: "",
-    todo: []
+    todos: []
+  };
+  deleteTodo = t => {
+    arr = this.state.todos;
+    index = arr.indexOf(t);
+    arr.splice(index, 1);
+    this.setState({ todos: arr });
   };
   addTodo = () => {
-    newTodo = this.state.todo;
-    newTodo.push(this.state.text);
-    this.setState({ todo: newTodo });
+    arr = this.state.todos;
+    arr.push(this.state.text);
+    this.setState({ todos: arr, text: "" });
   };
   renderTodos = () => {
-    return this.state.todo.map(t => {
-      return <Text key={t}>{t}</Text>;
+    return this.state.todos.map(todo => {
+      return (
+        <Text
+          key={todo}
+          onPress={() => {
+            this.deleteTodo(todo);
+          }}
+        >
+          {todo}
+        </Text>
+      );
     });
   };
   render() {
@@ -22,7 +37,8 @@ class App extends React.Component {
         <Text>Hola React Native</Text>
         <TextInput
           style={styles.inputStyles}
-          onChangeText={newText => this.setState({ text: newText })}
+          onChangeText={text => this.setState({ text })}
+          value={this.state.text}
         />
         <Button title="Add Todo" color="grey" onPress={this.addTodo} />
         {this.renderTodos()}
